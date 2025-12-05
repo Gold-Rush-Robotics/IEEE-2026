@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<robot name="ante" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+    <!-- include Files -->
+    <xacro:include filename="$(find ante_description)/urdf/drivebase.xacro" />
+
+    <!-- create base_link -->
+    <link name="base_link" />
+
+    <!-- create drivebase using macro -->
+    <xacro:drivebase parent="base_link">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:drivebase>
+
+
+
+
+</robot>
