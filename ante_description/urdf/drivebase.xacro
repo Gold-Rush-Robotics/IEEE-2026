@@ -8,7 +8,7 @@
   <joint name="drivebase_base_link" type="fixed">
     <parent link="${parent}"/>
     <child link="chassis_link"/>
-    <xacro:insert_block name="origin" />
+    <!-- <xacro:insert_block name="origin" /> -->
   </joint>
 
   <!-- wheel joints -->
