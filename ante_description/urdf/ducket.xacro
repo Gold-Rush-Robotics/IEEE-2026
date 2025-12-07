@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+<xacro:macro name="ducket" params="parent *origin">
+
+  <!-- fix ducket to parent -->
+  <joint name="ducket_base_link" type="fixed">
+    <parent link="${parent}"/>
+    <child link="ducket_back"/>
+    <xacro:insert_block name="origin"/>
+  </joint>
+
+  <joint name="left_hinge" type="revolute">
+    <origin xyz="0.11175 -0.004 0.0000384" rpy="3.1415927 0. 1.5707964"/>
+    <parent link="ducket_back"/>
+    <child link="ducket_left"/>
+    <axis xyz="0. 0. 1."/>
+    <limit lower="-1.5707963" upper="1.5707963" effort="0." velocity="0."/>
+  </joint>
+  <joint name="right_hinge" type="revolute">
+    <origin xyz="-0.11175 -0.004 0.0000384" rpy="0. 0. 1.5707961"/>
+    <parent link="ducket_back"/>
+    <child link="ducket_right"/>
+    <axis xyz="0. 0. 1."/>
+    <limit lower="-1.5707963" upper="1.5707963" effort="0." velocity="0."/>
+  </joint>
+
+  <link name="ducket_back">
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://ante_description/meshes/ducket_back.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <geometry>
+        <mesh filename="package://ante_description/meshes/ducket_back.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="ducket_left">
+    <visual>
+      <origin xyz="0.004 -0.11175 0.0000384" rpy="3.1415927 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://ante_description/meshes/ducket_left.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.004 -0.11175 0.0000384" rpy="3.1415927 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://ante_description/meshes/ducket_left.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="ducket_right">
+    <visual>
+      <origin xyz="0.0008353 0.2182118 0.0071403" rpy="0. 0. -1.5707961"/>
+      <geometry>
+        <mesh filename="package://ante_description/meshes/ducket_right.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.0008353 0.2182118 0.0071403" rpy="0. 0. -1.5707961"/>
+      <geometry>
+        <mesh filename="package://ante_description/meshes/ducket_right.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+</xacro:macro>
+</robot>

@@ -4,14 +4,26 @@
 
     <!-- include Files -->
     <xacro:include filename="$(find ante_description)/urdf/drivebase.xacro" />
+    <xacro:include filename="$(find ante_description)/urdf/ducket.xacro" />
+    <xacro:include filename="$(find ante_description)/urdf/solenoids.xacro" />
 
     <!-- create base_link -->
     <link name="base_link" />
 
     <!-- create drivebase using macro -->
     <xacro:drivebase parent="base_link">
-        <origin xyz="0 0 1" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
     </xacro:drivebase>
+
+    <!-- create ducket and fasten to defined point -->
+    <xacro:ducket parent="base_link">
+        <origin xyz="0 -0.03 0.01" rpy="0 0 0"/>
+    </xacro:ducket>
+
+    <xacro:solenoids parent="base_link">
+        <origin xyz="-0.029 0.172 0.026" rpy="0 0 0"/>
+    </xacro:solenoids>
+
 
 
 
