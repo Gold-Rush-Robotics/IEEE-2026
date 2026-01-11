@@ -8,7 +8,7 @@
   <joint name="drivebase_base_link" type="fixed">
     <parent link="${parent}"/>
     <child link="chassis_link"/>
-    <!-- <xacro:insert_block name="origin" /> -->
+    <xacro:insert_block name="origin" />
   </joint>
 
   <!-- wheel joints -->
@@ -40,12 +40,13 @@
 
   <link name="chassis_link">
     <visual>
-      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <origin xyz="0. 0. 5" rpy="0. 0. 0."/>
       <geometry>
         <mesh filename="package://ante_description/meshes/decimated_drivebase.obj" scale="1. 1. 1."/>
       </geometry>
     </visual>
   </link>
+
   <link name="front_left_wheel">
     <visual>
       <origin xyz="0. -0. 0.06" rpy="1.5707964 1.5707964 0. "/>

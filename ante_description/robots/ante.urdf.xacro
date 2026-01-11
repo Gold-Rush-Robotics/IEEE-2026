@@ -6,6 +6,7 @@
     <xacro:include filename="$(find ante_description)/urdf/drivebase.xacro" />
     <xacro:include filename="$(find ante_description)/urdf/ducket.xacro" />
     <xacro:include filename="$(find ante_description)/urdf/solenoids.xacro" />
+    <!-- <xacro:include filename="$(find ante_description)/urdf/ros2_control.xacro" /> -->
 
     <!-- create base_link -->
     <link name="base_link" />

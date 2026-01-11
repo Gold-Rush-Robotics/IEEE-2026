@@ -1,0 +1,31 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50 #hz
+
+  joint_state_broadcaster:
+    type: joint_state_broadcaster/JointStateBroadcaster
+
+  mecanum_drive_controller:
+    type: mecanum_drive_controller/MecanumDriveController
+
+  joint_trajectory_controller:
+    type: joint_trajectory_controller/JointTrajectoryController
+
+mecanum_drive_controller:
+  ros__parameters:
+    front_left_wheel_command_joint_name: "front_left_axle"
+    front_right_wheel_command_joint_name: "front_right_axle"
+    rear_right_wheel_command_joint_name: "rear_right_axle"
+    rear_left_wheel_command_joint_name: "rear_left_axle"
+
+    kinematics:
+      x: 0
+      y: 0
+      theta: 0
+
+    wheels_radius: 0.075 #75mm
+
+joint_trajectory_controller:
+  ros__parameters:
+    
+
