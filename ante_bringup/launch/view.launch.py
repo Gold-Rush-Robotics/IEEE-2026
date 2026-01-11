@@ -9,13 +9,11 @@ from ament_index_python import get_package_share_path
 
 def generate_launch_description():
     urdf_path = os.path.join(get_package_share_path("ante_description"), "robots", "ante.urdf.xacro")
-    rviz_config_path = os.path.join(get_package_share_path("ante_bringup"), "config", "rviz_view_config.rviz")
+    rviz_config_path = os.path.join(get_package_share_path("ante_bringup"), "config", "view.rviz")
 
-    # print(rviz_config_path)
+    print(rviz_config_path)
 
     urdf = ParameterValue(Command(["xacro ", urdf_path]), value_type=str)
-    # Command(["xacro ", urdf_path, " > /workspace/DevEnv/jazzy_ws/src/IEEE-2026/ante_description/generated_urdf.urdf"])
-    # urdf = xacro.process_file(urdf_path).toprettyxml()
 
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
