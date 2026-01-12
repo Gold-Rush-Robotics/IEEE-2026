@@ -8,6 +8,7 @@
       <geometry>
         <mesh filename="package://ante_description/meshes/reader_base.stl" scale="1. 1. 1."/>
       </geometry>
+      <material name="green" />
     </visual>
   </link>
 
@@ -29,6 +30,7 @@
       <geometry>
         <mesh filename="package://ante_description/meshes/reader_bicep.stl" scale="1. 1. 1."/>
       </geometry>
+      <material name="green" />
     </visual>
   </link>
   <joint name="reader_shoulder_joint" type="revolute">
@@ -39,15 +41,18 @@
     <limit lower="-1.5707963" upper="1.5707963" effort="0." velocity="0."/>
   </joint>
 
+  <!-- create end effector link and joint -->
   <xacro:property name="elbow_offset_x" value="-0.02795" />
   <xacro:property name="elbow_offset_y" value="-0.00025" />
   <xacro:property name="elbow_offset_z" value="0.160527" />
   <link name="reader_end_link">
     <visual>
+      <!-- the shoulder offset needs to be subtracted because the mesh is in the correct position before the offset -->
       <origin xyz="${-elbow_offset_x - shoulder_offset_x} ${-elbow_offset_y - shoulder_offset_y} ${-elbow_offset_z - shoulder_offset_z}" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://ante_description/meshes/reader_end.stl" scale="1. 1. 1."/>
       </geometry>
+      <material name="green" />
     </visual>
   </link>
   <joint name="reader_elbow_joint" type="revolute">

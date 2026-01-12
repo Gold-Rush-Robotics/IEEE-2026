@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:macro name="knob_wheel" params="parent *origin">
+
+    <joint name="knob_wheel_axle" type="continuous">
+        <parent link="${parent}"/>
+        <child link="knob_wheel_link"/>
+        <xacro:insert_block name="origin"/>
+        <axis xyz="0 0 1" />
+    </joint>
+   
+    <link name="knob_wheel_link">
+        <visual>
+            <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+            <geometry>
+                <mesh filename="package://ante_description/meshes/knob_wheel.stl" scale="1. 1. 1."/>
+            </geometry>
+            <material name="orange" />
+        </visual>
+        <collision>
+            <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+            <geometry>
+                <mesh filename="package://ante_description/meshes/knob_wheel.stl" scale="1. 1. 1."/>
+            </geometry>
+        </collision>
+    </link>
+
+</xacro:macro>
+</robot>

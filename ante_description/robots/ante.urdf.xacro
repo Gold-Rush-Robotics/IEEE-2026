@@ -8,7 +8,10 @@
     <xacro:include filename="$(find ante_description)/parts/solenoids.xacro" />
     <xacro:include filename="$(find ante_description)/parts/simple_wheel.xacro" />
     <xacro:include filename="$(find ante_description)/parts/reader_arm.xacro" />
+    <xacro:include filename="$(find ante_description)/parts/knob_wheel.xacro" />
     <!-- <xacro:include filename="$(find ante_description)/urdf/ros2_control.xacro" /> -->
+    <xacro:include filename="$(find ante_description)/util/materials.xacro" />
+
 
 
     <!-- create base_link -->
@@ -64,8 +67,12 @@
     </xacro:solenoids>
 
     <xacro:reader_arm parent="chassis_link">
-        <origin xyz="0 0 0.2" rpy="0 0 0" />
+        <origin xyz="0 0 0.1" rpy="0 0 0" />
     </xacro:reader_arm>
+
+    <xacro:knob_wheel parent="chassis_link">
+        <origin xyz="0.138 0.072 0.115" rpy="0 -1.570796 0"/>
+    </xacro:knob_wheel>
 
 
 
