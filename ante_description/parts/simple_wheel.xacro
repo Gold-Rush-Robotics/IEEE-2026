@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:macro name="simple_wheel" params="name parent flip pos_x pos_y pos_z">
+  <link name="${name}_wheel_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://ante_description/meshes/simple_wheel.stl" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://ante_description/meshes/simple_wheel.stl" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="${name}_axle" type="continuous">
+    <origin xyz="${pos_x} ${pos_y} ${pos_z}" rpy="0 0 ${flip * 3.14159}"/>
+    <parent link="${parent}"/>
+    <child link="${name}_wheel_link"/>
+    <axis xyz="${copysign(1, (flip * -1))} 0. 0."/>
+  </joint>
+</xacro:macro>
+
+</robot>

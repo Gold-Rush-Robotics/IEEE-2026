@@ -12,7 +12,7 @@ find_package(ament_cmake REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 install(
-  DIRECTORY meshes urdf robots
+  DIRECTORY meshes parts robots util
   DESTINATION share/${PROJECT_NAME}
 )
 

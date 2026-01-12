@@ -24,7 +24,7 @@ def generate_launch_description():
     rviz2_node = Node(
         package="rviz2",
         executable="rviz2",
-        arguments=[{"-d", rviz_config_path}]
+        arguments=["-d", rviz_config_path]
     )
 
     joint_state_publisher_gui_node = Node(

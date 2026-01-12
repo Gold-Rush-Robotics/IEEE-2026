@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:macro name="reader_arm" params="parent *origin">
+  <!-- create shoulder and fix to parent -->
+  <link name="reader_base_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://ante_description/meshes/reader_base.stl" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="reader_base" type="fixed">
+    <parent link="${parent}"/>
+    <child link="reader_base_link"/>
+    <xacro:insert_block name="origin"/>
+  </joint>
+
+  
+
+  <!-- create bicep and shoulder joint -->
+  <xacro:property name="shoulder_offset_x" value="-0.005611" />
+  <xacro:property name="shoulder_offset_y" value="0.012795" />
+  <xacro:property name="shoulder_offset_z" value="0.0442" />
+  <link name="reader_bicep_link">
+    <visual>
+      <origin xyz="${-shoulder_offset_x} ${-shoulder_offset_y} ${-shoulder_offset_z}" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ante_description/meshes/reader_bicep.stl" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="reader_shoulder_joint" type="revolute">
+    <origin xyz="${shoulder_offset_x} ${shoulder_offset_y} ${shoulder_offset_z}" rpy="0 0 0"/>
+    <parent link="reader_base_link"/>
+    <child link="reader_bicep_link"/>
+    <axis xyz="0 1 0."/>
+    <limit lower="-1.5707963" upper="1.5707963" effort="0." velocity="0."/>
+  </joint>
+
+  <xacro:property name="elbow_offset_x" value="-0.02795" />
+  <xacro:property name="elbow_offset_y" value="-0.00025" />
+  <xacro:property name="elbow_offset_z" value="0.160527" />
+  <link name="reader_end_link">
+    <visual>
+      <origin xyz="${-elbow_offset_x - shoulder_offset_x} ${-elbow_offset_y - shoulder_offset_y} ${-elbow_offset_z - shoulder_offset_z}" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ante_description/meshes/reader_end.stl" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="reader_elbow_joint" type="revolute">
+    <origin xyz="${elbow_offset_x} ${elbow_offset_y} ${elbow_offset_z}" rpy="0 0 0"/>
+    <parent link="reader_bicep_link"/>
+    <child link="reader_end_link"/>
+    <axis xyz="0 1 0."/>
+    <limit lower="-1.5707963" upper="1.5707963" effort="0." velocity="0."/>
+  </joint>
+
+
+</xacro:macro>
+
+</robot>

@@ -2,28 +2,70 @@
 <robot name="ante" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 
-    <!-- include Files -->
-    <xacro:include filename="$(find ante_description)/urdf/drivebase.xacro" />
-    <xacro:include filename="$(find ante_description)/urdf/ducket.xacro" />
-    <xacro:include filename="$(find ante_description)/urdf/solenoids.xacro" />
+    <!-- Include Files -->
+    <xacro:include filename="$(find ante_description)/parts/drivebase.xacro" />
+    <xacro:include filename="$(find ante_description)/parts/ducket.xacro" />
+    <xacro:include filename="$(find ante_description)/parts/solenoids.xacro" />
+    <xacro:include filename="$(find ante_description)/parts/simple_wheel.xacro" />
+    <xacro:include filename="$(find ante_description)/parts/reader_arm.xacro" />
     <!-- <xacro:include filename="$(find ante_description)/urdf/ros2_control.xacro" /> -->
+
 
     <!-- create base_link -->
     <link name="base_link" />
 
-    <!-- create drivebase using macro -->
     <xacro:drivebase parent="base_link">
         <origin xyz="0 0 0" rpy="0 0 0"/>
     </xacro:drivebase>
 
-    <!-- create ducket and fasten to defined point -->
-    <xacro:ducket parent="base_link">
-        <origin xyz="0 -0.03 0.01" rpy="0 0 0"/>
+    <xacro:simple_wheel 
+        name="front_left"
+        parent="chassis_link"
+        flip="0"
+        pos_x="0.051"
+        pos_y="-0.070"
+        pos_z="0.0375"
+    />
+
+    <xacro:simple_wheel 
+        name="front_right"
+        parent="chassis_link"
+        flip="1"
+        pos_x="-0.051"
+        pos_y="-0.070"
+        pos_z="0.0375"
+    />
+
+    <xacro:simple_wheel 
+        name="rear_left"
+        parent="chassis_link"
+        flip="0"
+        pos_x="0.051"
+        pos_y="0.070"
+        pos_z="0.0375"
+    />
+
+    <xacro:simple_wheel 
+        name="rear_right"
+        parent="chassis_link"
+        flip="1"
+        pos_x="-0.051"
+        pos_y="0.070"
+        pos_z="0.0375"
+    />
+
+
+    <xacro:ducket parent="chassis_link">
+        <origin xyz="0 -0.12025 0.041445" rpy="0 0 0"/>
     </xacro:ducket>
 
-    <xacro:solenoids parent="base_link">
-        <origin xyz="-0.029 0.172 0.026" rpy="0 0 0"/>
+    <xacro:solenoids parent="chassis_link">
+        <origin xyz="-0.029 0.052 0.0675" rpy="0 0 0"/>
     </xacro:solenoids>
+
+    <xacro:reader_arm parent="chassis_link">
+        <origin xyz="0 0 0.2" rpy="0 0 0" />
+    </xacro:reader_arm>
 
 
 
