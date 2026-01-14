@@ -34,3 +34,12 @@ If you'd rather use a native ROS2 install or some other method, I trust you can 
 10. run `ros2 wtf` in the terminal, you should see an output like this
 ![alt text](https://github.com/Gold-Rush-Robotics/IEEE-2026/raw/main/images/ros2_wtf.png "ros2_wtf.png")
 
+11. If all went well, you have successfully installed our development environment! Now we need to get the competition specific robot code. Change directory into DevEnv/jazzy_ws/src
+
+12. Clone the current repo: `git clone https://github.com/Gold-Rush-Robotics/IEEE-2026.git`
+
+13. Navigate back to the /jazzy_ws directory and run `colcon build` to build the packages. This will need to be done every time changes are made to the project. **IMPORTANT: make sure to do this in the /jazzy_ws directory, otherwise the build, install, and log folders will end up somewhere unexpected
+
+14. Run `source install/setup.zsh`. This tells the system where to look for built files, and will need to be run again after any changes to the file structure (such as new files)
+
+15. Congrats! Now you're ready to start developing. Check the github project for details on specific tasks.
