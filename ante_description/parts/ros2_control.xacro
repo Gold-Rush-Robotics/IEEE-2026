@@ -1,9 +1,10 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
     
-<xacro:macro name="ros2_control" params="prefix ros2_control_hardware_type usb_port">
+<xacro:macro name="ros2_control" params="ros2_control_hardware_type usb_port">
 
     <ros2_control name="ante" type="system">
+
         <hardware>
             <xacro:if value="${ros2_control_hardware_type == 'mock_components'}">
                 <plugin>mock_components/GenericSystem</plugin>
@@ -13,7 +14,25 @@
                 <param name="usb_port">${usb_port}</param>
             </xacro:if>
         </hardware>
+
+        <joint name="reader_shoulder_joint">
+            <param name="initial_position">0.0</param>
+            <param name="id">1</param>
+            <param name="offset">0</param>
+            <command_interface name="position" />
+            <state_interface name="position" />
+            <state_interface name="velocity" />
+        </joint>
+
+        <joint name="reader_elbow_joint">
+            <param name="initial_position">0.0</param>
+            <param name="id">2</param>
+            <param name="offset">0</param>
+            <command_interface name="position" />
+            <state_interface name="position" />
+            <state_interface name="velocity" />
+        </joint>
     </ros2_control>
 
-</macro>
+</xacro:macro>
 </robot>

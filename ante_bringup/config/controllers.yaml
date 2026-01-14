@@ -8,8 +8,8 @@ controller_manager:
   mecanum_drive_controller:
     type: mecanum_drive_controller/MecanumDriveController
 
-  joint_trajectory_controller:
-    type: joint_trajectory_controller/JointTrajectoryController
+  forward_position_controller:
+    type: forward_command_controller/ForwardCommandController
 
 mecanum_drive_controller:
   ros__parameters:
@@ -25,7 +25,11 @@ mecanum_drive_controller:
 
     wheels_radius: 0.075 #75mm
 
-joint_trajectory_controller:
+forward_position_controller:
   ros__parameters:
+    joints:
+      - reader_shoulder_joint
+      - reader_elbow_joint
+    interface_name: position
     
 
