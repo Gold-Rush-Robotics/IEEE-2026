@@ -2,14 +2,14 @@ controller_manager:
   ros__parameters:
     update_rate: 50 #hz
 
-  joint_state_broadcaster:
-    type: joint_state_broadcaster/JointStateBroadcaster
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
 
-  mecanum_drive_controller:
-    type: mecanum_drive_controller/MecanumDriveController
+    mecanum_drive_controller:
+      type: mecanum_drive_controller/MecanumDriveController
 
-  forward_position_controller:
-    type: forward_command_controller/ForwardCommandController
+    arm_position_controller:
+      type: forward_command_controller/ForwardCommandController
 
 mecanum_drive_controller:
   ros__parameters:
@@ -25,7 +25,7 @@ mecanum_drive_controller:
 
     wheels_radius: 0.075 #75mm
 
-forward_position_controller:
+arm_position_controller:
   ros__parameters:
     joints:
       - reader_shoulder_joint

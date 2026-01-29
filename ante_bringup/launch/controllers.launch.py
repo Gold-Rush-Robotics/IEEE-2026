@@ -33,10 +33,10 @@ def generate_launch_description():
         output="screen",
     )
 
-    diff_drive_spawner = Node(
+    arm_position_controller = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["forward_position_controller"],
+        arguments=["arm_position_controller"],
     )
 
     joint_state_publisher_gui_node = Node(
@@ -48,6 +48,6 @@ def generate_launch_description():
         robot_state_publisher_node,
         control_node,
         rviz2_node,
-        diff_drive_spawner,
+        arm_position_controller,
         joint_state_publisher_gui_node
     ])
