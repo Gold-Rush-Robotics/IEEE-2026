@@ -16,11 +16,11 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
-install(
-  PROGRAMS
-    testing_nodes/reader_arm_test.py
-  DESTINATION lib/${PROJECT_NAME}
-)
+# install(
+#   PROGRAMS
+#     testing_nodes/reader_arm_test.py
+#   DESTINATION lib/${PROJECT_NAME}
+# )
 
 
 if(BUILD_TESTING)
