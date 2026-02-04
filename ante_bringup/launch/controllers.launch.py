@@ -44,6 +44,13 @@ def generate_launch_description():
         executable="reader_arm_test"
     )
 
+
+    joint_state_broadcaster = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_state_broadcaster"],
+    )
+
     joint_state_publisher_gui_node = Node(
         package="joint_state_publisher_gui",
         executable="joint_state_publisher_gui"
@@ -54,6 +61,7 @@ def generate_launch_description():
         control_node,
         rviz2_node,
         arm_position_controller,
-        # arm_position_publisher,
-        joint_state_publisher_gui_node
+        arm_position_publisher,
+        joint_state_broadcaster,
+        # joint_state_publisher_gui_node
     ])

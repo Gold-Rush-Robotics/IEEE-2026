@@ -18,18 +18,14 @@ class ReaderArmTest(Node):
 
     def timer_callback(self):
         msg = Float64MultiArray()
-        match self.i:
-            # case 0: msg.data = [0, 0]
-            # case 1: msg.data = [PI, 0]
-            # case 2: msg.data = [PI/2, PI]
-
-            case 0: msg.data = [PI/2, 0]
-            case 1: msg.data = [0, 2*PI]
-            case 2: msg.data = [PI, PI/2]
+        match self.i % 4:
+            case 0: msg.data = [0, 0]
+            case 1: msg.data = [0, PI/2]
+            case 2: msg.data = [PI/2, PI/2]
+            case 3: msg.data = [0, PI]
         self.publisher_.publish(msg)
         self.get_logger().info(f"Moving arm to {msg.data}")
         self.i += 1
-        self.i %= 3
 
 
 def main(args=None):
