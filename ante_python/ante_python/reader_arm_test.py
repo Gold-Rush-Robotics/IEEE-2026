@@ -5,23 +5,26 @@ from rclpy.node import Node
 from std_msgs.msg import Float64MultiArray
 
 import math
+PI = math.pi
 
 
 class ReaderArmTest(Node):
-
     def __init__(self):
         super().__init__('reader_arm_test')
         self.publisher_ = self.create_publisher(Float64MultiArray, '/arm_position_controller/commands', 10)
-        timer_period = 0.5  # seconds
+        timer_period = 5  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
         self.i = 0
 
     def timer_callback(self):
         msg = Float64MultiArray()
-        arm_pos = (self.i * 0.1) % 2
-        msg.data = [arm_pos, arm_pos]
+        match self.i % 4:
+            case 0: msg.data = [0, 0]
+            case 1: msg.data = [0, PI/2]
+            case 2: msg.data = [PI/2, PI/2]
+            case 3: msg.data = [0, PI]
         self.publisher_.publish(msg)
-        self.get_logger().info(f"Published arm position at {arm_pos} radians")
+        self.get_logger().info(f"Moving arm to {msg.data}")
         self.i += 1
 
 

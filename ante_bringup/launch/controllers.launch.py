@@ -10,7 +10,7 @@ from ament_index_python import get_package_share_path
 def generate_launch_description():
     urdf_path = os.path.join(get_package_share_path("ante_description"), "robots", "ante.urdf.xacro")
     rviz_config_path = os.path.join(get_package_share_path("ante_bringup"), "config", "view.rviz")
-    controllers_file = os.path.join(get_package_share_path("ante_description"), 'config', 'controllers.yaml')
+    controllers_file = os.path.join(get_package_share_path("ante_bringup"), 'config', 'controllers.yaml')
 
     urdf = ParameterValue(Command(["xacro ", urdf_path]), value_type=str)
 
@@ -39,6 +39,18 @@ def generate_launch_description():
         arguments=["arm_position_controller"],
     )
 
+    arm_position_publisher = Node(
+        package="ante_python",
+        executable="reader_arm_test"
+    )
+
+
+    joint_state_broadcaster = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_state_broadcaster"],
+    )
+
     joint_state_publisher_gui_node = Node(
         package="joint_state_publisher_gui",
         executable="joint_state_publisher_gui"
@@ -49,5 +61,7 @@ def generate_launch_description():
         control_node,
         rviz2_node,
         arm_position_controller,
-        joint_state_publisher_gui_node
+        arm_position_publisher,
+        joint_state_broadcaster,
+        # joint_state_publisher_gui_node
     ])
